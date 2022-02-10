@@ -33,8 +33,8 @@ file_path = os.path.dirname(os.path.abspath(__file__))
 os.chdir(file_path)
 
 
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 900
+HEIGHT = 900
 SPRITE_SCALING = 0.5
 
 class MenuView(arcade.View):
@@ -43,9 +43,9 @@ class MenuView(arcade.View):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Menu Screen", WIDTH / 2, HEIGHT / 2,
+        arcade.draw_text("Menu principal", WIDTH / 2, HEIGHT / 2,
                          arcade.color.BLACK, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to advance", WIDTH / 2, HEIGHT / 2 - 75,
+        arcade.draw_text("Haz click para jugar", WIDTH / 2, HEIGHT / 2 - 75,
                          arcade.color.GRAY, font_size=20, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
@@ -55,13 +55,13 @@ class MenuView(arcade.View):
 
 class InstructionView(arcade.View):
     def on_show(self):
-        arcade.set_background_color(arcade.color.ORANGE_PEEL)
+        arcade.set_background_color(arcade.color.ORANGE)
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text("Instructions Screen", WIDTH / 2, HEIGHT / 2,
+        arcade.draw_text("¿Preparado?", WIDTH / 2, HEIGHT / 2,
                          arcade.color.BLACK, font_size=50, anchor_x="center")
-        arcade.draw_text("Click to advance", WIDTH / 2, HEIGHT / 2 - 75,
+        arcade.draw_text("Haz click para avanzar", WIDTH / 2, HEIGHT / 2 - 75,
                          arcade.color.GRAY, font_size=20, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
@@ -80,8 +80,8 @@ class GameView(arcade.View):
         self.coin_list = arcade.SpriteList()
 
         # Set up the player
-        self.score = 0
-        self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
+        self.score = 500
+        self.player_sprite = arcade.Sprite("4-vaccine-having-an-idea-cartoon-clipart.jpg",
                                            SPRITE_SCALING)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
@@ -90,7 +90,7 @@ class GameView(arcade.View):
         for i in range(5):
 
             # Create the coin instance
-            coin = arcade.Sprite(":resources:images/items/coinGold.png", SPRITE_SCALING / 3)
+            coin = arcade.Sprite("descarga.jpg", SPRITE_SCALING / 3)
 
             # Position the coin
             coin.center_x = random.randrange(WIDTH)
@@ -100,7 +100,7 @@ class GameView(arcade.View):
             self.coin_list.append(coin)
 
     def on_show(self):
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.WHITE)
 
         # Don't show the mouse cursor
         self.window.set_mouse_visible(False)
@@ -164,8 +164,8 @@ class GameOverView(arcade.View):
         """
         Draw "Game over" across the screen.
         """
-        arcade.draw_text("Game Over", 240, 400, arcade.color.WHITE, 54)
-        arcade.draw_text("Click to restart", 310, 300, arcade.color.WHITE, 24)
+        arcade.draw_text("Se acabó el juego", 100, 400, arcade.color.WHITE, 54)
+        arcade.draw_text("Click para reiniciar", 310, 300, arcade.color.YELLOW, 24)
 
         time_taken_formatted = f"{round(self.time_taken, 2)} seconds"
         arcade.draw_text(f"Time taken: {time_taken_formatted}",
